@@ -40,7 +40,7 @@ bool verify_double(const string& s) {
     return digit;   
 }
 string double_add(const string& s1, const string& s2) {
-    // Step 1: Detect and strip signs
+    // Detect and strip signs
     bool neg1 = false, neg2 = false;
     string a = s1, b = s2;
     if (!a.empty() && a[0] == '-') { neg1 = true; a = a.substr(1); }
@@ -48,20 +48,20 @@ string double_add(const string& s1, const string& s2) {
     if (!b.empty() && b[0] == '-') { neg2 = true; b = b.substr(1); }
     else if (!b.empty() && b[0] == '+') { b = b.substr(1); }
 
-    // Step 2: Split into integer and fractional parts
+    // Split into integer and fractional parts
     size_t pos1 = a.find('.'), pos2 = b.find('.');
     string a_int = (pos1 == string::npos) ? a : a.substr(0, pos1);
     string a_frac = (pos1 == string::npos) ? "" : a.substr(pos1 + 1);
     string b_int = (pos2 == string::npos) ? b : b.substr(0, pos2);
     string b_frac = (pos2 == string::npos) ? "" : b.substr(pos2 + 1);
 
-    // Step 3: Pad fractional and integer parts
+    // Pad fractional and integer parts
     while (a_frac.size() < b_frac.size()) a_frac += '0';
     while (b_frac.size() < a_frac.size()) b_frac += '0';
     while (a_int.size() < b_int.size()) a_int = '0' + a_int;
     while (b_int.size() < a_int.size()) b_int = '0' + b_int;
 
-    // Step 4: Combine for magnitude comparison
+    // Combine for magnitude comparison
     string A = a_int + a_frac;
     string B = b_int + b_frac;
 
